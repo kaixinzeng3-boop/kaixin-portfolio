@@ -181,7 +181,28 @@ footer{min-height:140px;display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:30
 .kara-card h3{margin:30px 0 12px;font:500 30px var(--serif)}
 .kara-card p{margin:0;color:#6e645d;font-size:13px;line-height:1.65}
 .kara-outcome{background:linear-gradient(90deg,#fff0e8,#f7dfd1)}
-.kara-outcome-inner{width:var(--page);margin:auto;padding:58px 0 66px}
+.kara-outcome-band{
+    background:var(--accent);
+    color:#fff8f1;
+    margin-top:0;
+}
+
+.outcome-band-inner{
+    width:var(--page);
+    margin:auto;
+    padding:72px 0;
+}
+
+.outcome-band .project-section-label{
+    color:#f0c8c8;
+    margin-left:80px;
+}
+
+.outcome-band h2{
+    font:500 clamp(46px,5vw,82px)/.98 var(--serif);
+    max-width:900px;
+    margin:0 0 0 80px;
+}
 .kara-outcome-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:start}
 .kara-outcome-grid h3{margin:0;color:var(--kara);font:500 clamp(48px,5.2vw,82px)/.98 var(--serif);letter-spacing:-.035em}
 .kara-outcome-grid p{margin:8px 0 0;padding-left:34px;border-left:1px solid rgba(240,100,44,.35);color:#625750;font:19px/1.55 var(--serif)}
@@ -202,4 +223,7 @@ footer{min-height:140px;display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:30
   .kara-hero-copy{padding:48px 0}.kara-hero-copy h1{font-size:68px}.kara-hero-image{min-height:360px}
   .kara-section{padding:42px 0 48px}.kara-section-head h2{font-size:32px}.kara-problem-grid h3{font-size:48px}
   .kara-material{grid-template-columns:58px 1fr auto;padding:0 12px}
+}
+.outcome-inner > div:first-child{
+  padding-left:130px;
 }
