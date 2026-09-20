@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI × Engineering project by Kaixin Zeng.">
+  <title>AI × Engineering — Kaixin Zeng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .ai-page main{width:var(--page);margin:auto}
+    .ai-hero{padding:28px 0 0;border-bottom:1px solid var(--line)}
+    .ai-hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:36px;align-items:start;min-height:560px}
+    .ai-copy{padding:42px 0 56px}
+    .ai-copy .eyebrow{margin-bottom:18px}
+    .ai-copy h1{margin:0;font:500 clamp(62px,6.5vw,102px)/.92 var(--serif);letter-spacing:-.045em}
+    .ai-sub{margin:14px 0 0;font:italic clamp(30px,2.5vw,46px)/1.1 var(--serif);color:#5f5550}
+    .ai-deck{max-width:560px;margin:28px 0 34px;font:23px/1.45 var(--serif);color:#564d46}
+    .ai-cta{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--accent);color:#fff8f3;border:1px solid var(--accent);font:18px var(--serif)}
+    .ai-meta{display:flex;gap:18px;align-items:center;padding-top:18px;border-top:1px solid var(--line);color:#6e655f;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+    .ai-meta span.sep{color:#b0a59c}
+    .ai-image{position:relative;overflow:hidden;min-height:560px;background:#e6ddd2}
+    .ai-image img{height:100%;object-fit:cover;object-position:center}
+    .ai-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(245,241,234,.18), transparent 26%);pointer-events:none}
+
+    .ai-section{padding:54px 0 60px;border-bottom:1px solid var(--line)}
+    .ai-section-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:26px}
+    .ai-problem{display:grid;grid-template-columns:1.2fr .85fr;gap:72px;align-items:start}
+    .ai-problem h2{margin:0;font:500 clamp(46px,4.6vw,74px)/1 var(--serif);letter-spacing:-.025em;max-width:700px}
+    .ai-problem p{margin:0;padding-left:34px;border-left:1px solid var(--line);font:20px/1.5 var(--serif);color:#605751}
+
+    .ai-approach{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .ai-card{min-height:210px;padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.18)}
+    .ai-card span{display:inline-flex;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;background:#f1e4e1;color:var(--accent);font:16px var(--serif)}
+    .ai-card h3{margin:24px 0 12px;font:500 34px/1 var(--serif)}
+    .ai-card p{margin:0;font:18px/1.45 var(--serif);color:#655b54}
+
+    .ai-outcome{background:#f7efee}
+    .ai-outcome-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:72px;align-items:start}
+    .ai-outcome-grid h2{margin:0;font:500 clamp(44px,4.8vw,72px)/1 var(--serif);letter-spacing:-.02em}
+    .ai-outcome-grid p{margin:0;font:20px/1.55 var(--serif);color:#5f5550}
+
+    .ai-recs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .ai-rec{min-height:240px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .ai-rec .num{font:20px var(--serif);color:var(--accent)}
+    .ai-rec h3{margin:18px 0 18px;font:500 30px/1.06 var(--serif)}
+    .ai-rec .rule{width:42px;height:2px;background:var(--accent);margin:0 0 18px}
+    .ai-rec p{margin:0;font:18px/1.42 var(--serif);color:#665d56}
+
+    .ai-materials{padding-top:56px}
+    .ai-material-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .ai-material{display:grid;grid-template-columns:74px 1fr auto;gap:22px;align-items:center;min-height:84px;padding:22px 24px;border:1px solid var(--line);background:#fbf8f3}
+    .ai-material span{font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+    .ai-material h3{margin:0;font:500 32px var(--serif)}
+    .ai-material p{margin:4px 0 0;color:#776c64;font-size:12px}
+    .ai-material b{font:400 22px var(--serif);color:var(--accent)}
+    .ai-material.disabled{opacity:.9}
+    .ai-material.disabled b{color:#b67880}
+
+    .next-project.ai-next{padding:64px 0 84px}
+    .next-project.ai-next a{color:var(--accent)}
+
+    @media (max-width:1080px){
+      .ai-hero-grid,.ai-problem,.ai-outcome-grid{grid-template-columns:1fr}
+      .ai-approach,.ai-recs,.ai-material-list{grid-template-columns:1fr 1fr}
+      .ai-image{min-height:420px}
+      .ai-problem p{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:20px}
+    }
+    @media (max-width:760px){
+      .ai-copy h1{font-size:58px}
+      .ai-sub{font-size:30px}
+      .ai-deck,.ai-problem p,.ai-outcome-grid p{font-size:19px}
+      .ai-approach,.ai-recs,.ai-material-list{grid-template-columns:1fr}
+      .ai-material{grid-template-columns:60px 1fr auto}
+      .ai-meta{flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body class="project-page ai-page">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">KZ</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="site-nav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#visual">Visual Practice</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="ai-hero">
+    <div class="project-kicker reveal">
+      <a href="../index.html#work">← Selected Work</a>
+      <span>03 / AI × Engineering</span>
+    </div>
+
+    <div class="ai-hero-grid">
+      <div class="ai-copy reveal">
+        <p class="eyebrow">Denmark / Ramboll</p>
+        <h1>AI × Engineering</h1>
+        <p class="ai-sub">AI Opportunities in Engineering Workflows</p>
+        <p class="ai-deck">
+          A strategic exploration of how AI can improve coordination across engineering,
+          procurement, quality, and delivery workflows in a complex AEC environment.
+        </p>
+        <a class="ai-cta" href="#core-problem">View Project ↓</a>
+        <div class="ai-meta">
+          <span>Denmark</span><span class="sep">/</span>
+          <span>Ramboll</span><span class="sep">/</span>
+          <span>2024</span>
+        </div>
+      </div>
+
+      <div class="ai-image reveal">
+        <img src="../images/ai-engineering-ramboll.jpg" alt="Ramboll project team group photo">
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-section" id="core-problem">
+    <div class="ai-section-label">01. The Core Problem</div>
+    <div class="ai-problem">
+      <h2>
+        Fragmented tools and disconnected decisions make AI difficult
+        to scale across engineering work.
+      </h2>
+      <p>
+        Teams faced coordination delays across procurement, quality control,
+        and project delivery. While many promising AI ideas existed, they were
+        often isolated within teams or tools, making it difficult to create
+        compound value or drive meaningful adoption at scale.
+      </p>
+    </div>
+  </section>
+
+  <section class="ai-section">
+    <div class="ai-section-label">02. Our Approach</div>
+    <div class="ai-approach">
+      <article class="ai-card reveal">
+        <span>01</span>
+        <h3>Workflow Mapping</h3>
+        <p>Map interactions from procurement to delivery and identify where coordination slows down.</p>
+      </article>
+      <article class="ai-card reveal">
+        <span>02</span>
+        <h3>Stakeholder Research</h3>
+        <p>Synthesize cross-functional needs, operational pain points, and decision bottlenecks.</p>
+      </article>
+      <article class="ai-card reveal">
+        <span>03</span>
+        <h3>AI Strategy</h3>
+        <p>Identify high-value use cases, integration opportunities, and system-level recommendations.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ai-section ai-outcome">
+    <div class="ai-section-label">03. Outcome</div>
+    <div class="ai-outcome-grid">
+      <h2>
+        The project reframed AI adoption as a systems design
+        challenge—not just a tool selection problem.
+      </h2>
+      <p>
+        We explored neuro-symbolic and agentic AI integration, developed a value-based
+        evaluation framework, and highlighted the importance of avoiding fragmented tools.
+        Most importantly, we emphasized keeping human judgment in the loop to ensure
+        responsible, practical, and trustworthy adoption.
+      </p>
+    </div>
+  </section>
+
+  <section class="ai-section">
+    <div class="ai-section-label">04. Key Recommendations</div>
+    <div class="ai-recs">
+      <article class="ai-rec reveal">
+        <div class="num">01</div>
+        <h3>Integrate AI across workflows</h3>
+        <div class="rule"></div>
+        <p>Connect procurement, engineering, quality, and delivery through shared AI systems.</p>
+      </article>
+      <article class="ai-rec reveal">
+        <div class="num">02</div>
+        <h3>Build value-based evaluation criteria</h3>
+        <div class="rule"></div>
+        <p>Assess AI opportunities based on measurable business and user value.</p>
+      </article>
+      <article class="ai-rec reveal">
+        <div class="num">03</div>
+        <h3>Reduce fragmented point solutions</h3>
+        <div class="rule"></div>
+        <p>Avoid isolated tools and pursue integrated, scalable platform approaches.</p>
+      </article>
+      <article class="ai-rec reveal">
+        <div class="num">04</div>
+        <h3>Keep human-in-the-loop decision making</h3>
+        <div class="rule"></div>
+        <p>Design AI to augment human expertise, not replace it.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ai-section ai-materials">
+    <div class="ai-section-label">05. Project Materials</div>
+    <div class="ai-material-list">
+      <a class="ai-material disabled reveal" href="#" onclick="return false;">
+        <span>PDF</span>
+        <div>
+          <h3>Final Report</h3>
+          <p>Placeholder area ready for your report link when you have the file.</p>
+        </div>
+        <b>Coming Soon</b>
+      </a>
+      <a class="ai-material disabled reveal" href="#" onclick="return false;">
+        <span>PPTX</span>
+        <div>
+          <h3>Final Presentation</h3>
+          <p>Placeholder area ready for your slides link when you have the file.</p>
+        </div>
+        <b>Coming Soon</b>
+      </a>
+    </div>
+  </section>
+
+  <section class="next-project ai-next">
+    <p>Next Project</p>
+    <a href="physical-computing.html">Physical Computing →</a>
+  </section>
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>KAIXIN ZENG</strong>
+    <small>Engineering × Design × Technology</small>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:kzeng6@jh.edu">Email</a>
+    <a href="https://www.linkedin.com/in/kaixin-zeng" target="_blank">LinkedIn</a>
+    <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+  </div>
+  <p>A MORE HUMAN TOMORROW.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

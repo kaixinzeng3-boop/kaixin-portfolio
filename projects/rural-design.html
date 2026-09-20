@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rural Design landscape architecture graduation project by Kaixin Zeng.">
+  <title>Rural Design — Kaixin Zeng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .rural-page{
+      --rural-red:#8f1f24;
+      --rural-red-dark:#641419;
+      --rural-cream:#f6f1e8;
+      --rural-paper:#fbf7f0;
+      --rural-ink:#2f2924;
+    }
+
+    .rural-page main{
+      width:var(--page);
+      margin:auto;
+    }
+
+    .rural-hero{
+      padding:28px 0 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .rural-hero-grid{
+      min-height:560px;
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .rural-copy{
+      padding:44px 24px 54px 0;
+    }
+
+    .rural-copy .eyebrow,
+    .section-label{
+      margin:0 0 18px;
+      color:var(--rural-red);
+      font-size:10px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.28em;
+    }
+
+    .rural-cn-title{
+      margin:0 0 16px;
+      color:var(--rural-red-dark);
+      font:500 clamp(52px,5.4vw,88px)/.96 var(--serif);
+      letter-spacing:-.045em;
+    }
+
+    .rural-copy h1{
+      margin:0;
+      color:var(--rural-ink);
+      font:500 clamp(34px,3.4vw,54px)/1 var(--serif);
+      letter-spacing:-.025em;
+    }
+
+    .rural-deck{
+      max-width:520px;
+      margin:26px 0 0;
+      color:#675d55;
+      font:20px/1.5 var(--serif);
+    }
+
+    .rural-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 18px;
+      margin-top:30px;
+      color:#7a6d64;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+    }
+
+    .rural-hero-image{
+      border:1px solid #ded2c6;
+      background:#eee4d6;
+      overflow:hidden;
+    }
+
+    .rural-hero-image img{
+      width:100%;
+      height:100%;
+      min-height:520px;
+      display:block;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .rural-section{
+      padding:56px 0 62px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:34px;
+      align-items:start;
+    }
+
+    .intro-title{
+      margin:0;
+      color:var(--rural-red-dark);
+      font:500 clamp(44px,4.2vw,70px)/1.02 var(--serif);
+      letter-spacing:-.03em;
+    }
+
+    .intro-text{
+      color:#665b53;
+      font:18px/1.8 var(--serif);
+      display:grid;
+      gap:18px;
+      padding-top:10px;
+    }
+
+    .boards-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .board-card{
+      margin:0;
+      border:1px solid var(--line);
+      background:var(--rural-paper);
+      overflow:hidden;
+    }
+
+    .board-card a{display:block}
+
+    .board-card img{
+      width:100%;
+      display:block;
+      background:#fff;
+    }
+
+    .board-card figcaption{
+      padding:18px 20px 20px;
+      display:grid;
+      gap:6px;
+    }
+
+    .board-card strong{
+      color:var(--rural-red-dark);
+      font:500 28px/1 var(--serif);
+    }
+
+    .board-card p{
+      margin:0;
+      color:#6c6159;
+      font:16px/1.55 var(--serif);
+    }
+
+    .rural-next{
+      padding:60px 0 78px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+    }
+
+    .rural-next p{
+      margin:0;
+      color:var(--muted);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+    }
+
+    .rural-next a{
+      color:var(--rural-red);
+      font:500 clamp(42px,4.8vw,70px) var(--serif);
+    }
+
+    @media(max-width:1080px){
+      .rural-hero-grid,
+      .intro-grid,
+      .boards-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .rural-hero-image img{min-height:400px}
+    }
+
+    @media(max-width:760px){
+      .rural-cn-title{font-size:54px}
+      .rural-copy h1{font-size:34px}
+      .rural-deck{font-size:18px}
+      .intro-title{font-size:38px}
+      .rural-next{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body class="project-page rural-page">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">KZ</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="site-nav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#visual">Visual Practice</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="rural-hero">
+    <div class="project-kicker reveal">
+      <a href="../index.html">← Home</a>
+      <span>Visual Practice / Rural Design</span>
+    </div>
+
+    <div class="rural-hero-grid">
+      <div class="rural-copy reveal">
+        <p class="eyebrow">Landscape Architecture Graduation Project</p>
+        <div class="rural-cn-title">溪源深处<br>有人家</div>
+        <h1>Rural Design</h1>
+        <p class="rural-deck">
+          A graduation design project based on Xiyou Village in Lin'an, exploring
+          how rural landscape can connect ecological restoration, local culture,
+          tourism experience, and everyday community life.
+        </p>
+
+        <div class="rural-meta">
+          <span>Landscape Architecture</span>
+          <span>2024</span>
+          <span>Graduation Design</span>
+        </div>
+      </div>
+
+      <div class="rural-hero-image reveal">
+        <img src="../images/rural-hero.jpg" alt="Rural design masterplan overview">
+      </div>
+    </div>
+  </section>
+
+  <section class="rural-section">
+    <div class="section-label reveal">01 / Project Brief & Background</div>
+    <div class="intro-grid">
+      <h2 class="intro-title reveal">
+        A rural revitalization proposal rooted in landscape, village memory, and cultural continuity.
+      </h2>
+
+      <div class="intro-text reveal">
+        <p>
+          This project focuses on Xiyou Village in Lin'an and examines how landscape design can respond to rural transformation.
+          Instead of treating ecology, culture, and tourism as separate issues, the design brings them together through one
+          integrated village experience.
+        </p>
+        <p>
+          The proposal highlights local natural resources, spatial character, and cultural identity, then translates them into
+          a design strategy that supports scenic routes, activity scenes, and long-term village development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rural-section">
+    <div class="section-label reveal">02 / Final Boards</div>
+    <div class="boards-wrap">
+      <figure class="board-card reveal">
+        <a href="../assets/Rural_Design_Board_01.png" target="_blank" rel="noopener">
+          <img src="../images/rural-board-01.jpg" alt="Rural design final board one">
+        </a>
+        <figcaption>
+          <strong>Board 01</strong>
+          <p>Strategy framework, visitor routes, scene integration, and the overall village masterplan.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="board-card reveal">
+        <a href="../assets/Rural_Design_Board_02.png" target="_blank" rel="noopener">
+          <img src="../images/rural-board-02.jpg" alt="Rural design final board two">
+        </a>
+        <figcaption>
+          <strong>Board 02</strong>
+          <p>Site context, planning analysis, development framework, and architectural design expression.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="rural-next reveal">
+    <p>Back to</p>
+    <a href="../index.html#visual">Visual Practice →</a>
+  </section>
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>KAIXIN ZENG</strong>
+    <small>Engineering × Design × Technology</small>
+  </div>
+
+  <div class="footer-links">
+    <a href="mailto:kzeng6@jh.edu">Email</a>
+    <a href="https://www.linkedin.com/in/kaixin-zeng" target="_blank">LinkedIn</a>
+    <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+  </div>
+
+  <p>A MORE HUMAN TOMORROW.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

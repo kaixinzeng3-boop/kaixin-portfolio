@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KaraOrchee product strategy case study by Kaixin Zeng.">
+  <title>KaraOrchee — Kaixin Zeng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .kara-page{
+      --orange:#f25f2b;
+      --orange-soft:#f9e8df;
+      --cream:#f5f1ea;
+      --deep:#180c08;
+      --brown:#4a1c0e;
+    }
+
+    .kara-page main{
+      width:var(--page);
+      margin:0 auto;
+    }
+
+    /* HERO */
+    .kara-hero{
+      display:block;
+      width:100%;
+      min-height:0;
+      grid-template-columns:none;
+      padding-top:28px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .kara-hero-grid{
+      min-height:560px;
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      align-items:stretch;
+    }
+
+    .kara-copy{
+      padding:58px 56px 56px 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .kara-kicker{
+      margin:0 0 26px;
+      color:var(--orange);
+      font-size:10px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.28em;
+    }
+
+    .kara-copy h1{
+      margin:0;
+      font:500 clamp(72px,7.8vw,118px)/.83 var(--serif);
+      letter-spacing:-.055em;
+    }
+
+    .kara-subtitle{
+      max-width:520px;
+      margin:22px 0 0;
+      font:clamp(30px,2.8vw,46px)/1.05 var(--serif);
+      color:#2f2925;
+    }
+
+    .kara-deck{
+      max-width:540px;
+      margin:28px 0 0;
+      font:21px/1.48 var(--serif);
+      color:#615751;
+    }
+
+    .kara-actions{
+      margin-top:30px;
+      display:flex;
+      gap:16px;
+    }
+
+    .kara-btn{
+      min-height:50px;
+      padding:0 30px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid #a89d95;
+      font:18px var(--serif);
+      transition:.25s ease;
+    }
+
+    .kara-btn.primary{
+      background:var(--orange);
+      color:#fff;
+      border-color:var(--orange);
+      border-radius:999px;
+    }
+
+    .kara-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    /* Right visual panel matching the approved mockup */
+    .kara-visual{
+      position:relative;
+      overflow:hidden;
+      min-height:560px;
+      background:
+        radial-gradient(circle at 48% 42%, rgba(132,49,18,.55), rgba(35,11,7,.18) 38%, rgba(17,8,6,.96) 74%),
+        linear-gradient(115deg,#4b1b0d 0%,#1e0b07 52%,#100806 100%);
+    }
+
+    .kara-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(245,241,234,.78) 0%,rgba(245,241,234,.26) 9%,rgba(245,241,234,0) 21%);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .phone-wrap{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding-right:90px;
+      z-index:2;
+    }
+
+    .phone-wrap img{
+      width:min(390px,72%);
+      max-height:520px;
+      object-fit:contain;
+      display:block;
+      filter:drop-shadow(0 28px 48px rgba(0,0,0,.34));
+    }
+
+    .hero-note{
+      position:absolute;
+      right:40px;
+      top:155px;
+      z-index:3;
+      color:var(--orange);
+      font:italic 29px/1.02 var(--serif);
+      transform:rotate(-6deg);
+      text-align:left;
+    }
+
+    .hero-tags{
+      position:absolute;
+      right:42px;
+      bottom:72px;
+      z-index:3;
+      color:#f5e9e3;
+      font-size:10px;
+      line-height:1.7;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+    }
+
+    /* SHARED SECTIONS */
+    .kara-section{
+      padding:48px 0 56px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .section-label-kara{
+      margin-bottom:22px;
+      color:#2a2521;
+      font:500 28px var(--serif);
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .section-label-kara::before{
+      color:#4f4741;
+      font:12px var(--serif);
+    }
+
+    #problem .section-label-kara::before{content:"01"}
+    #approach .section-label-kara::before{content:"02"}
+    .kara-outcome .section-label-kara::before{content:"03"}
+    #materials .section-label-kara::before{content:"04"}
+
+    /* PROBLEM */
+    .problem-grid{
+      display:grid;
+      grid-template-columns:1.22fr .78fr;
+      gap:62px;
+      align-items:start;
+    }
+
+    .problem-grid h2{
+      margin:0;
+      max-width:800px;
+      font:500 clamp(44px,4.9vw,72px)/.98 var(--serif);
+      letter-spacing:-.025em;
+    }
+
+    .problem-copy{
+      padding-left:34px;
+      border-left:1px solid var(--line);
+      color:#675e57;
+      font:19px/1.52 var(--serif);
+    }
+
+    .problem-copy p{margin-top:0}
+
+    /* APPROACH */
+    .approach-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:20px;
+    }
+
+    .approach-note{
+      margin:0 0 22px;
+      color:var(--accent);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+    }
+
+    .approach-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .approach-card{
+      min-height:210px;
+      padding:28px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.10);
+    }
+
+    .approach-icon{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--orange-soft);
+      color:var(--orange);
+      font-size:24px;
+      margin-bottom:22px;
+    }
+
+    .approach-card h3{
+      margin:0 0 12px;
+      font:500 26px var(--serif);
+    }
+
+    .approach-card p{
+      margin:0;
+      color:#756b64;
+      font:17px/1.45 var(--serif);
+    }
+
+    /* OUTCOME */
+    .kara-outcome{
+      background:#f8e4d9;
+      border-bottom:1px solid var(--line);
+    }
+
+    .kara-outcome-inner{
+      width:var(--page);
+      margin:auto;
+      padding:50px 0 54px;
+    }
+
+    .outcome-grid{
+      display:grid;
+      grid-template-columns:1.25fr .55fr .35fr;
+      gap:38px;
+      align-items:start;
+    }
+
+    .kara-outcome h2{
+      margin:0;
+      color:var(--orange);
+      font:500 clamp(44px,4.6vw,70px)/.98 var(--serif);
+      letter-spacing:-.02em;
+    }
+
+    .outcome-copy{
+      padding-left:28px;
+      border-left:1px solid #cdb4a7;
+      color:#685e57;
+      font:18px/1.5 var(--serif);
+    }
+
+    .outcome-copy p{margin:0}
+
+    .outcome-tag{
+      padding-left:28px;
+      border-left:1px solid #cdb4a7;
+      color:#5f5954;
+      font-size:10px;
+      line-height:1.7;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+    }
+
+    /* MATERIALS - consistent with Healthcare */
+    .materials-list{
+      border-top:1px solid var(--line);
+    }
+
+    .material-row{
+      display:grid;
+      grid-template-columns:70px 1.2fr 1.7fr auto;
+      gap:28px;
+      align-items:center;
+      min-height:84px;
+      border-bottom:1px solid var(--line);
+      transition:.2s ease;
+    }
+
+    .material-row:hover{
+      background:#efe8df;
+      padding-left:8px;
+    }
+
+    .material-row .filetype{
+      color:var(--accent);
+      font:17px var(--serif);
+    }
+
+    .material-row h3{
+      margin:0;
+      font:500 25px var(--serif);
+    }
+
+    .material-row p{
+      margin:0;
+      color:#766c65;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    .material-row .arrow{
+      color:var(--accent);
+      font:24px var(--serif);
+    }
+
+    /* NEXT */
+    .kara-next{
+      padding:58px 0 72px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+    }
+
+    .kara-next p{
+      margin:0;
+      color:var(--muted);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+    }
+
+    .kara-next a{
+      font:500 clamp(44px,5vw,76px) var(--serif);
+      color:var(--accent);
+    }
+
+    @media(max-width:1080px){
+      .kara-hero-grid{grid-template-columns:1fr}
+      .kara-copy{padding-right:0}
+      .kara-visual{min-height:500px}
+      .phone-wrap{padding-right:80px}
+      .problem-grid{grid-template-columns:1fr;gap:30px}
+      .problem-copy{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:20px}
+      .outcome-grid{grid-template-columns:1fr}
+      .outcome-copy,.outcome-tag{padding-left:0;border-left:0;border-top:1px solid #cdb4a7;padding-top:20px}
+    }
+
+    @media(max-width:760px){
+      .kara-copy h1{font-size:62px}
+      .kara-subtitle{font-size:28px}
+      .kara-deck{font-size:19px}
+      .kara-visual{min-height:420px}
+      .phone-wrap{padding:0 60px 0 10px}
+      .phone-wrap img{width:min(310px,78%)}
+      .hero-note{right:22px;top:118px;font-size:23px}
+      .hero-tags{right:22px;bottom:46px}
+      .approach-head{align-items:flex-start;flex-direction:column}
+      .approach-grid{grid-template-columns:1fr}
+      .material-row{grid-template-columns:52px 1fr auto;gap:14px;padding:15px 0}
+      .material-row p{grid-column:2/-1}
+      .kara-next{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body class="kara-page">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">KZ</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+  <nav class="site-nav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#visual">Visual Practice</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="kara-hero">
+    <div class="project-kicker reveal">
+      <a href="../index.html#work">← Selected Work</a>
+      <span>02 / Product Strategy</span>
+    </div>
+    <div class="kara-hero-grid">
+      <div class="kara-copy reveal">
+        <p class="kara-kicker">Work / Product Strategy</p>
+        <h1>KaraOrchee</h1>
+        <p class="kara-subtitle">Adaptive AI Music Platform</p>
+        <p class="kara-deck">
+          An AI-driven orchestral accompaniment platform that adapts to your timing and interpretation.
+        </p>
+        <div class="kara-actions">
+          <a class="kara-btn primary" href="#problem">View Project ↓</a>
+        </div>
+      </div>
+
+      <div class="kara-visual reveal">
+        <div class="phone-wrap">
+          <img src="../images/karaorchee-phone.png" alt="KaraOrchee mobile interface">
+        </div>
+        <div class="hero-note">More<br>Music<br>Together.</div>
+        <div class="hero-tags">Practice<br>Create<br>Learn<br>Belong</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kara-section" id="problem">
+    <div class="section-label-kara reveal">The Problem</div>
+    <div class="problem-grid">
+      <h2 class="reveal">Musicians need more responsive, affordable orchestral practice support.</h2>
+      <div class="problem-copy reveal">
+        <p>
+          Many students struggle to find accompanists, face scheduling friction,
+          and rely on static tracks that lack real-time responsiveness.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="kara-section" id="approach">
+    <div class="approach-head">
+      <div class="section-label-kara reveal">Our Approach</div>
+      <p class="approach-note reveal">Research Process →</p>
+    </div>
+
+    <div class="approach-grid">
+      <article class="approach-card reveal">
+        <div class="approach-icon">●●●</div>
+        <h3>User Nunitoviews</h3>
+        <p>Spoke with students, teachers, and music professionals to understand real needs.</p>
+      </article>
+
+      <article class="approach-card reveal">
+        <div class="approach-icon">▮▮▮</div>
+        <h3>Surveys</h3>
+        <p>Gathered input from users to validate demand and key insights.</p>
+      </article>
+
+      <article class="approach-card reveal">
+        <div class="approach-icon">◈</div>
+        <h3>Product Strategy</h3>
+        <p>Synthesized findings into a focused product direction and go-to-market plan.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<section class="kara-outcome">
+  <div class="kara-outcome-inner">
+    <div class="section-label-kara reveal">Outcome</div>
+    <div class="outcome-grid">
+      <h2 class="reveal">The project translated user research into a clear product and go-to-market direction.</h2>
+      <div class="outcome-copy reveal">
+        <p>A human-centered strategy to make high-quality musical practice more accessible, engaging, and inclusive.</p>
+      </div>
+      <div class="outcome-tag reveal">Same Curiosity.<br>Brighter Tomorrows.</div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section class="kara-section" id="materials">
+    <div class="section-label-kara reveal">Project Materials</div>
+
+    <div class="materials-list">
+      <a class="material-row reveal" href="../assets/KaraOrchee_Final_Report.pdf" target="_blank" rel="noopener">
+        <span class="filetype">PDF</span>
+        <h3>Final Report</h3>
+        <p>Go-to-market strategy and comprehensive project report.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="material-row reveal" href="../assets/KaraOrchee_Final_Presentation.pptx" target="_blank" rel="noopener">
+        <span class="filetype">PPTX</span>
+        <h3>Final Presentation</h3>
+        <p>Project presentation slides.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="kara-next reveal">
+    <p>Next Project</p>
+    <a href="ai-engineering.html">AI × Engineering →</a>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>KAIXIN ZENG</strong>
+    <small>Engineering × Design × Technology</small>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:kzeng6@jh.edu">Email</a>
+    <a href="https://www.linkedin.com/in/kaixin-zeng" target="_blank">LinkedIn</a>
+    <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+  </div>
+  <p>A MORE HUMAN TOMORROW.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photography and visual practice by Kaixin Zeng.">
+  <title>Photography — Kaixin Zeng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .photo-page{
+      --photo-red:#991f2d;
+      --photo-red-soft:#b45d68;
+      --photo-paper:#f8f3ec;
+    }
+
+    .photo-page main{width:var(--page);margin:auto}
+
+    .photo-intro{
+      padding:34px 0 28px;
+      border-bottom:1px solid var(--line);
+      position:relative;
+    }
+
+    .photo-kicker{
+      color:#8b7c73;
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .photo-title{
+      margin:0;
+      color:var(--photo-red);
+      font:400 clamp(64px,7vw,108px)/.88 var(--serif);
+      letter-spacing:-.035em;
+    }
+
+    .photo-subtitle{
+      margin:18px 0 0;
+      color:#6d615a;
+      font:18px/1.45 var(--sans);
+      max-width:620px;
+    }
+
+    .photo-quote{
+      position:absolute;
+      top:50px;
+      right:0;
+      max-width:260px;
+      color:#b16b77;
+      font:italic 28px/1.08 var(--serif);
+      transform:rotate(-3deg);
+      text-align:center;
+    }
+
+    .gallery-section{padding:34px 0 20px}
+
+    .gallery-head{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:18px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .gallery-head h2{
+      margin:0;
+      color:var(--photo-red);
+      font:400 42px/1 var(--serif);
+    }
+
+    .gallery-head .line{height:1px;background:#c8aaa8}
+
+    .gallery-head p{
+      margin:0;
+      color:#9a7c7b;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+      white-space:nowrap;
+    }
+
+    .people-grid{
+      display:grid;
+      grid-template-columns:1.4fr .86fr .98fr .95fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .places-grid{
+      display:grid;
+      grid-template-columns:1.52fr .88fr .88fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .places-right{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .moments-grid{
+      display:grid;
+      grid-template-columns:1.55fr .85fr;
+      gap:30px;
+      align-items:start;
+    }
+
+    figure.photo-card{margin:0}
+
+    .photo-frame{
+      width:100%;
+      overflow:hidden;
+      background:#eee7df;
+    }
+
+    .photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .45s ease;
+    }
+
+    .photo-card:hover img{transform:scale(1.018)}
+
+    .portrait-tall{aspect-ratio:3/4}
+    .portrait-mid{aspect-ratio:4/5}
+    .landscape-wide{aspect-ratio:16/10}
+    .landscape-main{aspect-ratio:4/3}
+    .landscape-small{aspect-ratio:16/9}
+
+    .photo-card figcaption{
+      padding-top:8px;
+      color:#665d56;
+      font:15px/1.25 var(--sans);
+    }
+
+    .photo-card figcaption::after{
+      content:"";
+      display:block;
+      width:20px;
+      height:2px;
+      margin-top:8px;
+      background:var(--photo-red);
+    }
+
+    .moments-note{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:50px 24px;
+      color:#b16b77;
+      text-align:center;
+      font:italic clamp(30px,3vw,48px)/1.12 var(--serif);
+    }
+
+    .photo-footer-note{
+      padding:32px 0 56px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      border-top:1px solid var(--line);
+      color:#9b756f;
+      font:italic 17px var(--serif);
+    }
+
+    @media(max-width:1100px){
+      .photo-quote{position:static;text-align:left;transform:none;margin-top:28px}
+      .people-grid{grid-template-columns:1fr 1fr}
+      .places-grid{grid-template-columns:1fr 1fr}
+      .places-right{grid-column:auto}
+      .moments-grid{grid-template-columns:1fr}
+      .moments-note{padding:30px 0;justify-content:flex-start;text-align:left}
+    }
+
+    @media(max-width:720px){
+      .gallery-head{grid-template-columns:auto 1fr}
+      .gallery-head p{grid-column:1/-1;white-space:normal}
+      .people-grid,.places-grid{grid-template-columns:1fr}
+      .photo-title{font-size:64px}
+      .photo-footer-note{flex-direction:column}
+    }
+
+    .photo-topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:24px 0 0;
+      color:#8d8179;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+    .photo-topline a{
+      color:#8f1f24;
+      letter-spacing:.08em;
+      text-transform:none;
+      font-size:13px;
+    }
+    .photo-topline a:hover{opacity:.65}
+  </style>
+</head>
+<body class="project-page photo-page">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">KZ</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="site-nav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#visual">Visual Practice</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="photo-topline reveal">
+    <a href="../index.html">← Home</a>
+    <span>Visual Practice / Photography</span>
+  </div>
+
+  <section class="photo-intro">
+    <h1 class="photo-title">Photography</h1>
+    <p class="photo-subtitle">People, places, and small moments I don’t want to forget.</p>
+    <div class="photo-quote">“Good photos keep a feeling alive.”</div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-head">
+      <h2>People</h2><div class="line"></div><p>Portraits / Friends / Everyday</p>
+    </div>
+
+    <div class="people-grid">
+      <figure class="photo-card">
+        <div class="photo-frame portrait-tall"><img src="../images/photo-group.jpg" alt="Graduation group portrait"></div>
+        <figcaption>Friends for the journey</figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <div class="photo-frame portrait-tall"><img src="../images/photo-grad-seated.jpg" alt="Graduation portrait at Gilman Hall"></div>
+        <figcaption>New chapters</figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <div class="photo-frame portrait-tall"><img src="../images/photo-white-dress.jpg" alt="Portrait in an arched brick corridor"></div>
+        <figcaption>Same me, further</figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <div class="photo-frame portrait-tall"><img src="../images/photo-blue-dress.jpg" alt="Portrait in a field"></div>
+        <figcaption>In the sunlight</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-head">
+      <h2>Places</h2><div class="line"></div><p>Cities / Nature / A Wider World</p>
+    </div>
+
+    <div class="places-grid">
+      <figure class="photo-card">
+        <div class="photo-frame landscape-main"><img src="../images/photo-city.jpg" alt="Snowy city beside the sea"></div>
+        <figcaption>A colder, brighter horizon</figcaption>
+      </figure>
+
+      <div class="places-right">
+        <figure class="photo-card">
+          <div class="photo-frame landscape-small"><img src="../images/photo-camera-mountain.jpg" alt="Photographer in a mountain landscape"></div>
+          <figcaption>Chasing different views</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <div class="photo-frame landscape-small"><img src="../images/photo-snow-field.jpg" alt="Snow field at sunset"></div>
+          <figcaption>Evenings like this</figcaption>
+        </figure>
+      </div>
+
+      <div class="places-right">
+        <figure class="photo-card">
+          <div class="photo-frame landscape-small"><img src="../images/photo-rainbow-mountain.jpg" alt="Portrait at colorful mountain landscape"></div>
+          <figcaption>Somewhere extraordinary</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <div class="photo-frame landscape-small"><img src="../images/photo-guards.jpg" alt="Ceremonial guards in Copenhagen"></div>
+          <figcaption>Moments in another place</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-head">
+      <h2>Moments</h2><div class="line"></div><p>Travel / Candid / The In Between</p>
+    </div>
+
+    <div class="moments-grid">
+      <div>
+        <figure class="photo-card" style="margin-bottom:16px">
+          <div class="photo-frame landscape-wide"><img src="../images/photo-boat.jpg" alt="Friends talking on a boat in warm light"></div>
+          <figcaption>Conversations that stay</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <div class="photo-frame landscape-wide"><img src="../images/photo-snow-street.jpg" alt="People walking through a snowy street"></div>
+          <figcaption>Looking up together</figcaption>
+        </figure>
+      </div>
+
+      <div class="moments-note">“A collection of places, people, and moments that make life feel full.”</div>
+    </div>
+  </section>
+
+  <div class="photo-footer-note">
+    <span>Still discovering, still capturing.</span>
+    <a href="../index.html#visual">Back to Visual Practice →</a>
+  </div>
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>KAIXIN ZENG</strong>
+    <small>Engineering × Design × Technology</small>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:kzeng6@jh.edu">Email</a>
+    <a href="https://www.linkedin.com/in/kaixin-zeng" target="_blank">LinkedIn</a>
+    <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+  </div>
+  <p>A MORE HUMAN TOMORROW.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

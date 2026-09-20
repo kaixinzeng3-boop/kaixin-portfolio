@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tiny Garden Clock physical computing project by Kaixin Zeng.">
+  <title>Tiny Garden Clock — Kaixin Zeng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .physical-page main{width:var(--page);margin:auto}
+    .physical-hero{padding:28px 0 0;border-bottom:1px solid var(--line)}
+    .physical-hero-grid{
+      min-height:600px;
+      display:grid;
+      grid-template-columns:.86fr 1.14fr;
+      gap:36px;
+      align-items:start;
+    }
+    .physical-copy{
+      padding:58px 54px 60px 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .physical-line{
+      width:72px;
+      height:2px;
+      margin-top:34px;
+      background:#b16b78;
+    }
+    .physical-copy .eyebrow{margin-bottom:22px}
+    .physical-copy h1{
+      margin:0;
+      max-width:650px;
+      font:500 clamp(70px,7vw,112px)/.84 var(--serif);
+      letter-spacing:-.055em;
+    }
+    .physical-deck{
+      max-width:520px;
+      margin:30px 0 0;
+      color:#5d544e;
+      font:23px/1.45 var(--serif);
+    }
+
+    .physical-hero-image{
+      position:relative;
+      min-height:470px;
+      overflow:hidden;
+      background:#efe7de;
+      border:1px solid #ddd1c8;
+    }
+    .physical-hero-image img{
+      width:100%;
+      height:100%;
+      min-height:470px;
+      object-fit:cover;
+      object-position:center 52%;
+      display:block;
+    }
+
+    .physical-section{
+      padding:54px 0 60px;
+      border-bottom:1px solid var(--line);
+    }
+    .physical-label{
+      margin-bottom:26px;
+      color:var(--accent);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.28em;
+    }
+
+    .idea-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:76px;
+      align-items:start;
+    }
+    .idea-grid h2{
+      margin:0;
+      max-width:650px;
+      font:500 clamp(46px,4.7vw,72px)/.98 var(--serif);
+      letter-spacing:-.025em;
+    }
+    .idea-grid p{
+      margin:4px 0 0;
+      padding-left:34px;
+      border-left:1px solid var(--line);
+      color:#625851;
+      font:20px/1.55 var(--serif);
+    }
+
+    .process-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    .process-card{
+      border:1px solid var(--line);
+      background:#fbf8f3;
+      overflow:hidden;
+    }
+    .process-card img{
+      width:100%;
+      height:240px;
+      object-fit:contain;
+      object-position:center;
+      background:#f7f3ee;
+      padding:12px;
+      box-sizing:border-box;
+    }
+    .process-card-copy{padding:22px}
+    .process-card span{
+      display:block;
+      margin-bottom:14px;
+      color:var(--accent);
+      font-size:10px;
+      letter-spacing:.18em;
+    }
+    .process-card h3{
+      margin:0 0 10px;
+      font:500 28px/1.04 var(--serif);
+    }
+    .process-card p{
+      margin:0;
+      color:#71675f;
+      font:16px/1.45 var(--serif);
+    }
+
+    .outcome-panel{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:70px;
+      padding:58px 0;
+      border-bottom:1px solid var(--line);
+      background:#f5e9e6;
+    }
+    .outcome-inner{
+      width:var(--page);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:70px;
+    }
+    .outcome-inner h2{
+      margin:0;
+      color:var(--accent);
+      font:500 clamp(44px,4.7vw,72px)/.98 var(--serif);
+      letter-spacing:-.025em;
+    }
+    .outcome-copy{
+      padding-left:34px;
+      border-left:1px solid #d0bbb5;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:100%;
+    }
+    .outcome-copy p{
+      margin:0 0 22px;
+      color:#625851;
+      font:20px/1.5 var(--serif);
+    }
+    .outcome-note{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--accent);
+      font:500 18px/1.5 var(--serif);
+    }
+    .outcome-note span{
+      font-size:24px;
+      line-height:1;
+    }
+    .outcome-note em{
+      font-style:italic;
+    }
+
+    .materials-list{border-top:1px solid var(--line)}
+    .material-row{
+      display:grid;
+      grid-template-columns:80px 1.3fr 1.5fr auto;
+      gap:28px;
+      align-items:center;
+      min-height:96px;
+      border-bottom:1px solid var(--line);
+      transition:.2s ease;
+    }
+    .material-row:hover{background:#efe8df;padding-left:8px}
+    .material-row .filetype{color:var(--accent);font:18px var(--serif)}
+    .material-row h3{margin:0;font:500 28px var(--serif)}
+    .material-row p{margin:0;color:#766c65;font-size:12px;line-height:1.55}
+    .material-row .arrow{color:var(--accent);font:26px var(--serif)}
+
+    .physical-next{
+      padding:66px 0 82px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+    }
+    .physical-next p{
+      margin:0;
+      color:var(--muted);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+    }
+    .physical-next a{
+      font:500 clamp(46px,5vw,78px) var(--serif);
+      color:var(--accent);
+    }
+
+    @media(max-width:1080px){
+      .physical-hero-grid,.idea-grid,.outcome-inner{grid-template-columns:1fr}
+      .physical-copy{padding-right:0}
+      .physical-hero-image{min-height:360px}
+      .physical-hero-image img{min-height:360px}
+      .process-grid{grid-template-columns:1fr 1fr}
+      .idea-grid p,.outcome-copy{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:22px}
+    }
+    @media(max-width:760px){
+      .physical-copy h1{font-size:62px}
+      .physical-deck,.idea-grid p,.outcome-copy p{font-size:19px}
+      .process-grid{grid-template-columns:1fr}
+      .material-row{grid-template-columns:55px 1fr auto;gap:14px;padding:16px 0}
+      .material-row p{grid-column:2/-1}
+      .physical-next{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body class="project-page physical-page">
+
+<header class="site-header">
+  <a class="brand" href="../index.html">KZ</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="site-nav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#visual">Visual Practice</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="physical-hero">
+    <div class="project-kicker reveal">
+      <a href="../index.html#work">← Selected Work</a>
+      <span>04 / Physical Computing</span>
+    </div>
+
+    <div class="physical-hero-grid">
+      <div class="physical-copy reveal">
+        <p class="eyebrow">Physical Prototyping</p>
+        <h1>Tiny Garden Clock</h1>
+        <p class="physical-deck">
+          A handmade digital clock that combines real-time display with a playful,
+          garden-inspired decorative scene.
+        </p>
+        <div class="physical-line"></div>
+      </div>
+
+      <div class="physical-hero-image reveal">
+        <img src="../images/physical-hero-window.png" alt="Tiny Garden Clock styled hero image on apartment windowsill">
+      </div>
+    </div>
+  </section>
+
+  <section class="physical-section" id="idea">
+    <div class="physical-label reveal">01 / The Idea</div>
+    <div class="idea-grid">
+      <h2 class="reveal">Bringing technology and play together in a small physical object.</h2>
+      <p class="reveal">
+        The project explored physical prototyping through sketching, computer-aided design,
+        laser cutting, 3D printing, and electronics—moving from rough form studies to a
+        working clock with a real-time display.
+      </p>
+    </div>
+  </section>
+
+  <section class="physical-section">
+    <div class="physical-label reveal">02 / The Process</div>
+    <div class="process-grid">
+      <article class="process-card reveal">
+        <img src="../images/physical-cardboard.jpg" alt="Cardboard prototype">
+        <div class="process-card-copy">
+          <span>01</span>
+          <h3>Cardboard Prototype</h3>
+          <p>Tested design effectiveness, proportions, and structural stability with quick physical mockups.</p>
+        </div>
+      </article>
+
+      <article class="process-card reveal">
+        <img src="../images/physical-electronics.jpg" alt="Arduino and LED electronics prototype">
+        <div class="process-card-copy">
+          <span>02</span>
+          <h3>Electronics Prototype</h3>
+          <p>Iterated on the Arduino setup until the 4-digit LED display could show real time properly.</p>
+        </div>
+      </article>
+
+      <article class="process-card reveal">
+        <img src="../images/physical-3d.jpg" alt="3D printing prototype">
+        <div class="process-card-copy">
+          <span>03</span>
+          <h3>3D Printing</h3>
+          <p>Adjusted dimensions and refined the physical enclosure through repeated printing and testing.</p>
+        </div>
+      </article>
+
+      <article class="process-card reveal">
+        <img src="../images/physical-final-back.jpg" alt="Final clock enclosure and electronics">
+        <div class="process-card-copy">
+          <span>04</span>
+          <h3>Final Assembly</h3>
+          <p>Integrated electronics, the enclosure, and decorative elements into a single working prototype.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<section class="outcome-panel">
+  <div class="outcome-inner">
+    <div>
+      <div class="physical-label reveal">03 / Outcome</div>
+      <h2 class="reveal">
+        A working prototype that combines a real-time LED clock with a handmade physical scene.
+      </h2>
+    </div>
+
+    <div class="outcome-copy reveal">
+      <p>
+        The Tiny Garden Clock is a functional digital clock and a small, joyful scene —
+        showing how technology can live alongside creativity and personal expression
+        in everyday objects.
+      </p>
+      <div class="outcome-note">
+        <span>◜</span>
+        <em>More than a clock, a little garden on your desk.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="physical-section">
+    <div class="physical-label reveal">04 / Project Materials</div>
+
+    <div class="materials-list">
+      <a class="material-row reveal" href="../assets/Kaixin_Action_Lab_Portfolio.pdf" target="_blank" rel="noopener">
+        <span class="filetype">PDF</span>
+        <h3>Final Report</h3>
+        <p>PDF · Project documentation for the Tiny Garden Clock and its development process.</p>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="physical-next reveal">
+    <p>Back to</p>
+    <a href="../index.html#work">Selected Work →</a>
+  </section>
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>KAIXIN ZENG</strong>
+    <small>Engineering × Design × Technology</small>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:kzeng6@jh.edu">Email</a>
+    <a href="https://www.linkedin.com/in/kaixin-zeng" target="_blank">LinkedIn</a>
+    <a href="YOUR_GITHUB_URL" target="_blank">GitHub</a>
+    <a href="../assets/Kaixin_Zeng_Resume.pdf" target="_blank">Resume</a>
+  </div>
+  <p>A MORE HUMAN TOMORROW.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
